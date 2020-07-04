@@ -3,10 +3,59 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg white-bg fixed-top" id="mainNav">      
+        <h5><i class="fa fa-2x fa-shekel-sign logo mt-1"></i> <span class="move-text text-logo">Gestion allocation chambres</span></h5>
+        
+            <button class="navbar-toggler navbar-toggler-right logo" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <div><h6 class="message">Bienvenue sur votre application</h6></div>
+            <ul class="navbar-nav ml-auto ">
+                <li class="nav-item mt-3 d-md-block d-sm-block d-xs-block d-lg-none"><a class="nav-link" href="{{path('etudiants')}}"><i class="fas fa-user-graduate"></i> Etudiants</a></li>
+                <li class="nav-item mt-3 d-md-block d-sm-block d-xs-block d-lg-none"><a class="nav-link" href="{{path('chambres')}}"><i class="fas fa-building"></i> Chambres</a></li>
+                <li class="nav-item mt-3 d-md-block d-sm-block d-xs-block d-lg-none"><a class="nav-link" href="#"><i class="fas fa-chart-line"></i> Report</a></li>
+                <li class="nav-item">
+                <a class="btn btn-default move-btn" href="#">Déconnexion</a>
+                </li>
+            </ul>
+            </div>    
+        </nav>
+          <div class="row">
+              <div class="col-lg-2 col-md-3 d-none d-lg-block d-md-none d-sm-none d-xs-none side-nav">
+                <ul class="sidebar navbar-nav">
+                    <li class="mb-2 mt-3"><div class="avatar"><i class="fas fa-3x fa-user-lock"></i></div> </li>
+                    <li class="mb-2 title">Hello ! administrateur</li>
+                    <li class="mb-2"><a class="nav-link" href="{{path('etudiants')}}"><i class="fas fa-user-graduate"></i> Etudiants</a></li>
+                    <li class="mb-2"><a class="nav-link" href="{{path('chambres')}}"><i class="fas fa-building"></i> Chambres</a></li>
+                    <li class="mb-2 mr-3"><a class="nav-link" href="#"><i class="fas fa-chart-line"></i> Report</a></li>              
+                </ul>
+              </div>
+        </div>
+    </div>
+        {% block body %}
+        
+        {% endblock %}
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script src="js/script.js"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

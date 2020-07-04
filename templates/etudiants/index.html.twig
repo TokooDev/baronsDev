@@ -1,0 +1,187 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etudiants{% endblock %}
+
+{% block body %}
+    <div class="col-lg-10 ml-lg-auto col-md-12 col-sm-12 content-to-load-section">
+      
+                <div class="row">
+                    <div class="col-12 mt-4">
+                        <div class="row">
+                                <div class="col-10">
+                                    <h5 class="logo"> <i class="fas fa-list"></i> LISTE DES ETUDIANTS</h5>
+                                </div>
+                                <div class="col-2">
+                                    <button type="button" class="btn btn-default move-btn float-right" data-toggle="modal" data-target="#addStudent-modal"><i class="fas fa-plus-circle"></i> <span class="d-none d-md-inline d-sm-none d-xs-none d-xs-none d-lg-inline">Ajouter</span></button>
+                                </div>
+                            
+                        </div>
+                        <hr class="my-1">
+                        <div class="col-12 mt-4 table-responsive" id="showStudents">
+                            <table class="table table-hover table-bordered" id="table-students" style="width:100%">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>Matricule</th>
+                                        <th>Nom complet</th>
+                                        <th>Date de naissance</th>
+                                        <th>Téléphone</th>
+                                        <th>Email</th>
+                                        <th>Type</th>
+                                        <th>Adresse</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for etudiant in etudiants %}
+                                    <tr class="text-center">
+                                        <td>{{etudiant.matricule}}</td>
+                                        <td>{{etudiant.prenom}} {{etudiant.nom}}</td>
+                                        <td>{{etudiant.datenaissance |date('d-m-y')}}</td>
+                                        <td>{{etudiant.tel}}</td>
+                                        <td>{{etudiant.email}}</td>
+                                        <td>{{etudiant.type}}</td>
+                                        <td>{{etudiant.adresse}}</td>
+                                        <td>
+                                            <a href="#" title="Modifier étudiant" class="text-warging edit-student-Btn" data-toggle="modal" data-target="#editStudent-modal"><i class="fa fa-edit fa-lg"></i></a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--col-->
+                </div>
+                <!--row-->
+          
+            <!-- ADD -->
+        <div class="modal" id="addStudent-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="addStudentLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title logo" id="addStudentLabel"><i class="fas fa-plus-square"></i> AJOUT D'UN ETUDIANT</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                        <div class="col-lg-12 col-md-10 col-sm-10 pt-4">
+                                <form method="post" action="" id="addStudent-form" >
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="ml-2 text-secondary" for="n">Nom</label>
+                                                <input type="text" name="nom" id="n" placeholder="Tapez le nom" class="form-control my-input">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="ml-2 text-secondary" for="p">Prénom</label>
+                                                <input type="text" name="prenom" id="p" placeholder="Tapez le prénom" class="form-control my-input">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="ml-2 text-secondary" for="t">Téléphone</label>
+                                                <input type="text" name="tel" id="t" placeholder="Tapez le téléphone" class="form-control my-input">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="ml-2 text-secondary" for="d">Date de naissance</label>
+                                                <input type="date" name="datenaissance" id="d" class="form-control my-input">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="ml-2 text-secondary" for="e">Email</label>
+                                                <input type="text" name="email" id="e" placeholder="Tapez l'adresse email" class="form-control my-input">
+                                            </div>
+                                            <div class="form-group">
+                                                <select class="custom-select" id="tp" name="type">
+                                                    <option value="">Selectionner le type d'étudiant</option>
+                                                    <option value="Boursier logé">Boursier logé</option>
+                                                    <option value="Boursier non logé">Boursier non logé</option>
+                                                    <option value="Non boursier">Non boursier</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="ml-2 text-secondary" for="a">Adresse</label>
+                                                <input type="text" name="adresse" id="a" placeholder="Tapez l'adresse de l'étudiant" class="form-control my-input">
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                    <input type="submit" name="addStudent" id="addStudent" value="Enregister" class="btn addStudentBtn btn-default move-btn">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- EDIT -->
+    <div class="modal" id="editStudent-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="addStudentLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title logo" id="addStudentLabel"><i class="fas fa-plus-square"></i> MODIFICATION D'UN ETUDIANT</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <div class="col-lg-12 col-md-10 col-sm-10 pt-4">
+                                <form method="post" action="" id="editStudent-form">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                            <input type="hidden" name="id" id="id">
+                                                <label class="ml-2 text-secondary" for="nom">Nom</label>
+                                                <input type="text" name="nom" id="nom" placeholder="Tapez le nom" class="form-control my-input">
+                                            </div>
+                                            <div class="form-group">
+                                                
+                                                <label class="ml-2 text-secondary" for="prenom">Prénom</label>
+                                                <input type="text" name="prenom" id="prenom" placeholder="Tapez le prénom" class="form-control my-input">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="ml-2 text-secondary" for="telephone">Téléphone</label>
+                                                <input type="text" name="tel" id="tel" placeholder="Tapez le téléphone" class="form-control my-input">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="ml-2 text-secondary" for="telephone">Date de naissance</label>
+                                                <input type="date" name="datenaissance" id="datenaissance" class="form-control my-input">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="ml-2 text-secondary" for="email">Email</label>
+                                                <input type="text" name="email" id="email" placeholder="Tapez l'adresse email" class="form-control my-input">
+                                            </div>
+                                            <div class="form-group">
+                                                <select class="form-control my-input" id="type" name="type">
+                                                    <option value="">Selectionner le type d'étudiant</option>
+                                                    <option value="Boursier logé">Boursier logé</option>
+                                                    <option value="Boursier non logé">Boursier non logé</option>
+                                                    <option value="Non boursier">Non boursier</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="ml-2 text-secondary" for="adresse">Adresse</label>
+                                                <input type="text" name="adresse" id="adresse" placeholder="Tapez l'adresse de l'étudiant" class="form-control my-input">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                    <input type="submit" name="updateStudent" id="updateStudent" value="Enregister" class="btn editStudentBtn btn-default move-btn">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                </div>
+            </div>
+        </div>
+        <!--EDIT-->
+      </div>
+           
+    </div>
+{% endblock %}
