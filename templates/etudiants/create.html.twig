@@ -14,13 +14,13 @@
     <div class="row">
         <div class="col-8 offset-2">
             {{form_start(formetudiant)}}
-            {{form_row(formetudiant.nom, {'attr': {'placeholder':"Taper le nom de l'étudiant"}})}}
-            {{form_row(formetudiant.prenom, {'attr': {'placeholder':"Taper le prénom de l'étudiant"}})}}
-            {{form_row(formetudiant.datenaissance, {'attr': {'placeholder':"Taper la date de naissance de l'étudiant"}})}}
-            {{form_row(formetudiant.tel, {'attr': {'placeholder':"Taper le numéro de téléphone de l'étudiant"}})}}
-            {{form_row(formetudiant.email, {'attr': {'placeholder':"Taper l'adresse email de l'étudiant"}})}}
-            {{form_row(formetudiant.type, {'attr': {'placeholder':"Taper le type de l'étudiant"}})}}
-            {{form_row(formetudiant.adresse, {'attr': {'placeholder':"Taper l'adresse de l'étudiant"}})}}
+            {{form_row(formetudiant.nom, {'attr': {'placeholder':"Taper le nom de l'étudiant",'class': 'my-input'}})}}
+            {{form_row(formetudiant.prenom, {'attr': {'placeholder':"Taper le prénom de l'étudiant",'class': 'my-input'}})}}
+            {{form_row(formetudiant.datenaissance, {'attr': {'placeholder':"Taper la date de naissance de l'étudiant",'class': 'my-input'}})}}
+            {{form_row(formetudiant.tel, {'attr': {'placeholder':"Taper le numéro de téléphone de l'étudiant",'class': 'my-input'}})}}
+            {{form_row(formetudiant.email, {'attr': {'placeholder':"Taper l'adresse email de l'étudiant",'class': 'my-input'}})}}
+            {{form_row(formetudiant.type, {'attr': {'placeholder':"Taper le type de l'étudiant",'class': 'my-input'}})}}
+            {{form_row(formetudiant.adresse, {'attr': {'placeholder':"Taper l'adresse de l'étudiant",'class': 'my-input'}})}}
             <button class="btn btn-success move-btn" type="submit">
                 {% if editMode %}
                     Enregister

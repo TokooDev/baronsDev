@@ -6,7 +6,8 @@ use App\Entity\Etudiants;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 class EtudiantsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -14,10 +15,19 @@ class EtudiantsType extends AbstractType
         $builder
             ->add('nom')
             ->add('prenom')
-            ->add('datenaissance')
+            ->add('datenaissance', DateType::class, [
+                'widget' => 'single_text',
+                // this is actually the default format for single_text
+                'format' => 'yyyy-MM-dd',
+            ])
             ->add('tel')
             ->add('email')
-            ->add('type')
+            ->add('type', ChoiceType::class, [
+                'choices'  => [
+                    'BOURSIER LOGE' =>' BOURSIER LOGE',
+                    'BOURSIER NON LOGE' => 'BOURSIER NON LOGE',
+                    'NON BOURSIER' => 'NON BOURSIER',
+                ]])
             ->add('adresse')
         ;
     }
