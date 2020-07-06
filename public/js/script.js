@@ -5,4 +5,3 @@ $("#table-rooms").DataTable({
  $("#table-students").DataTable({
     order:[0,'desc']
  });
-
