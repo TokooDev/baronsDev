@@ -17,13 +17,13 @@ class EtudiantsType extends AbstractType
             ->add('prenom')
             ->add('datenaissance', DateType::class, [
                 'widget' => 'single_text',
-                // this is actually the default format for single_text
                 'format' => 'yyyy-MM-dd',
             ])
             ->add('tel')
             ->add('email')
             ->add('type', ChoiceType::class, [
                 'choices'  => [
+                    "Sélétionner le type d'étudiant" =>"",
                     'BOURSIER LOGE' =>' BOURSIER LOGE',
                     'BOURSIER NON LOGE' => 'BOURSIER NON LOGE',
                     'NON BOURSIER' => 'NON BOURSIER',

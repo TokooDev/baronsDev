@@ -12,125 +12,36 @@
                             <h5 class="logo"> <i class="fas fa-list"></i> LISTE DES CHAMBRES</h5>
                         </div>
                         <div class="col-2">
-                            <button type="button" class="btn btn-default move-btn float-right" data-toggle="modal" data-target="#addRoom-modal"><i class="fas fa-plus-circle"></i> <span class="d-none d-md-inline d-sm-none d-xs-none d-xs-none d-lg-inline">Ajouter</span></button>
+                            <a class="btn btn-default move-btn float-right" href="{{path('chambres_create')}}"><i class="fas fa-plus-circle"></i> <span class="d-none d-md-inline d-sm-none d-xs-none d-xs-none d-lg-inline">Ajouter</span></a>
                         </div>
                     
                 </div>
                 <hr class="my-1">
                 <div class="col-12 mt-4 table-responsive" id="showRooms">
                     <table class="table table-hover table-bordered" id="table-rooms">
-                <thead>
-                <tr class="text-center">
-                    <th>Numéro du bâtiment</th>
-                    <th>Numéro de la chambre</th>
-                    <th>Type de la chambre</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                    {% for chambre in chambres %}
-                        <tr class="text-center">
-                        <td>{{chambre.numBat}}</td>
-                        <td>{{chambre.numChamb}}</td>
-                        <td>{{chambre.type}}</td>
-                        <td>
-                            <a href="#" title="Modifier chambre" class="text-warging" data-toggle="modal" data-target="#editRoom-modal"><i class="fa fa-edit fa-lg"></i></a>&nbsp;&nbsp;
-                            <a href="#" title="Supprimer chambre" class="text-danger"><i class="fa fa-trash-alt fa-lg"></i></a>
-                        </td>
+                    <thead>
+                    <tr class="text-center">
+                        <th>Numéro du bâtiment</th>
+                        <th>Numéro de la chambre</th>
+                        <th>Type de la chambre</th>
+                        <th>Action</th>
                     </tr>
-                    {% endfor %}
-                </tbody>
+                    </thead>
+                    <tbody>
+                        {% for chambre in chambres %}
+                            <tr class="text-center">
+                            <td>{{chambre.numBat}}</td>
+                            <td>{{chambre.numChamb}}</td>
+                            <td>{{chambre.type}}</td>
+                            <td>
+                                <a href="{{path('chambres_edit', {id: chambre.id})}}" title="Modifier chambre" class="text-warging"><i class="fa fa-edit fa-lg"></i></a>&nbsp;&nbsp;
+                                <a href="{{path('chambres_delete', {id: chambre.id})}}" title="Supprimer chambre" class="text-danger"><i class="fa fa-trash-alt fa-lg"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
                 </table>
-                </div>
-            <!-- ADD -->
-        <div class="modal" id="addRoom-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="addRoomLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title logo" id="addRoomLabel"><i class="fas fa-plus-square"></i> AJOUT D'UNE CHAMBRE</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                <div class="statusMsg"></div>
-                <div class="col-lg-12 col-md-10 col-sm-10 pt-4">
-                                <form method="post" action="" id="addRoom-form" novalidate="novalidate">
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <div class="form-group">
-                                                <label class="ml-2 text-secondary" for="nB">Numéro bâtiment</label>
-                                                <input type="text" name="numBat" required id="nB" placeholder="Tapez le numéro du bâtiment" class="form-control my-input">
-                                            </div>
-                                            <div class="form-group">
-                                                <select class="form-control my-input" id="tp" required name="type">
-                                                    <option value="">Selectionner le type de chambres</option>
-                                                    <option value="A DEUX">Chambre à deux</option>
-                                                    <option value="INDIVIDUEL">Chambre individuelle</option>
-                                                </select>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                    <input type="submit" name="addRoom" id="addRoom" value="Enregister" class="btn addRoomBtn btn-default move-btn">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                </div>
             </div>
-        </div>
-    </div>
-    <!-- EDIT -->
-    <div class="modal" id="editRoom-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="addRoomLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title logo" id="editRoomLabel"><i class="fas fa-plus-square"></i> MODIFICATION D'UNE CHAMBRE</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                <div class="col-lg-12 col-md-10 col-sm-10 pt-4">
-                                <form method="post" action="" id="editRoom-form">
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <div class="form-group">
-                                            <input type="hidden" name="id" id="id">
-                                                <label class="ml-2 text-secondary" for="numBat">Numéro bâtiment</label>
-                                                <input type="text" name="numBat" id="numBat" class="form-control my-input">
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="ml-2 text-secondary" for="numChamb">Numéro chambre</label>
-                                                <input type="text" name="numChamb" id="numChamb" class="form-control my-input">
-                                            </div>
-                                            <div class="form-group">
-                                                <select class="form-control my-input"  name="type" id="type">
-                                                    <option value="">Selectionner le type de chambres</option>
-                                                    <option value="A DEUX">Chambre à deux</option>
-                                                    <option value="INDIVIDUEL">Chambre individuelle</option>
-                                                </select>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                    <input type="submit" name="updateRoom" id="updateRoom" value="Enregister" class="btn editRoomBtn btn-default move-btn">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                </div>
-            </div>
-        </div>
-    </div>
-        <!--EDIT-->
            
     </div>
 {% endblock %}

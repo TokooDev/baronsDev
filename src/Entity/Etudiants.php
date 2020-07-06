@@ -55,9 +55,9 @@ class Etudiants
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
      *      min = 9,
-     *      max = 15,
+     *      max = 50,
      *      minMessage = "Votre numéro doit faire au moins 9 caractères",
-     *      maxMessage = "Votre numéro ne doit pas dépasser 15 caractères",
+     *      maxMessage = "Votre numéro ne doit pas dépasser 50 caractères",
      *      allowEmptyString = false
      * )
      */
@@ -65,13 +65,6 @@ class Etudiants
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(
-     *      min = 9,
-     *      max = 15,
-     *      minMessage = "Votre numéro doit faire au moins 9 caractères",
-     *      maxMessage = "Votre numéro ne doit pas dépasser 15 caractères",
-     *      allowEmptyString = false
-     * )
      * 
      * @Assert\Email(
      *     message = "L'adresse{{ value }}' n'est pas une adresse email valide."
@@ -81,23 +74,16 @@ class Etudiants
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(
-     *      min = 9,
-     *      max = 50,
-     *      minMessage = "Votre numéro doit faire au moins 9 caractères",
-     *      maxMessage = "Votre numéro ne doit pas dépasser 50 caractères",
-     *      allowEmptyString = false
-     * )
      */
     private $type;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
-     *      min = 5,
-     *      max = 15,
-     *      minMessage = "Votre numéro doit faire au moins 9 caractères",
-     *      maxMessage = "Votre numéro ne doit pas dépasser 15 caractères",
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "Votre numéro doit faire au moins 2 caractères",
+     *      maxMessage = "Votre numéro ne doit pas dépasser 255 caractères",
      *      allowEmptyString = false
      * )
      */

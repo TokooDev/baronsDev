@@ -6,6 +6,7 @@ use App\Repository\ChambresRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ChambresRepository::class)
@@ -21,6 +22,13 @@ class Chambres
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 4,
+     *      minMessage = "Le numéro de la chambre doit avoir au moins 1 chiffre",
+     *      maxMessage = "Le numéro de la chambre ne doit pas dépasser 4 chiffres",
+     *      allowEmptyString = false
+     * )
      */
     private $numBat;
 

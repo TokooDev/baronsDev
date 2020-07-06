@@ -36,13 +36,11 @@ class EtudiantsController extends AbstractController
         $form = $this->createForm(EtudiantsType::class, $etudiant);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            if(!$etudiant->getId()){
-                $year = date("Y");
-                $ll = u($etudiant->getPrenom())->slice(-2);
-                $cc = u($etudiant->getNom())->slice(0,2);
-                $rand = random_int(1, 10000);
-                $etudiant->setMatricule($year.$cc.$ll.$rand);
-            }           
+            $year = date("Y");
+            $ll = u($etudiant->getPrenom())->slice(-2);
+            $cc = u($etudiant->getNom())->slice(0,2);
+            $rand = random_int(1, 10000);
+            $etudiant->setMatricule($year.$cc.$ll.$rand);          
             $manager->persist($etudiant);
             $manager->flush();
             $flashy->success('Opération effectuée avec succès!','etudiants');
