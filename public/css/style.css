@@ -109,3 +109,7 @@ body{
 .active-link{
     color: #713BDB;
 }
+
+.error {
+    color: #ff0000;
+}

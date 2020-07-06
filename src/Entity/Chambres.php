@@ -35,7 +35,7 @@ class Chambres
     private $type;
 
     /**
-     * @ORM\OneToMany(targetEntity=Etudiants::class, mappedBy="chambre")
+     * @ORM\OneToMany(targetEntity=Etudiants::class, mappedBy="numChamb")
      */
     private $etudiants;
 
@@ -97,7 +97,7 @@ class Chambres
     {
         if (!$this->etudiants->contains($etudiant)) {
             $this->etudiants[] = $etudiant;
-            $etudiant->setChambre($this);
+            $etudiant->setNumChamb($this);
         }
 
         return $this;
@@ -108,8 +108,8 @@ class Chambres
         if ($this->etudiants->contains($etudiant)) {
             $this->etudiants->removeElement($etudiant);
             // set the owning side to null (unless already changed)
-            if ($etudiant->getChambre() === $this) {
-                $etudiant->setChambre(null);
+            if ($etudiant->getNumChamb() === $this) {
+                $etudiant->setNumChamb(null);
             }
         }
 

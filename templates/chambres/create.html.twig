@@ -1,0 +1,33 @@
+  
+{% extends 'base.html.twig' %}
+{% form_theme formchambre 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+<div class="col-lg-10 ml-lg-auto p-2 col-md-12 col-sm-12 content-to-load-section">
+    <h3 class="logo text-center">
+    {% if editMode %}
+        <i class="fas fa-plus-square"></i> MODIFICATION DES INFORMATIONS D'UNE CHAMBRE
+    {% else %}
+        <i class="fas fa-plus-square"></i> AJOUT D'UNE CHAMBRE
+    {% endif %}
+    
+    </h3>
+    <hr>
+    <div class="row">
+        <div class="col-8 offset-2">
+            {{form_start(formchambre)}}
+            {{form_row(formchambre.numBat, {'attr': {'placeholder':"Taper le numéro du batiment"}})}}
+            {{form_row(formchambre.numChamb, {'attr': {'placeholder':"Taper le numéro de la chambre"}})}}
+            {{form_row(formchambre.type, {'attr': {'placeholder':"Taper le type du chambre(individuel ou plusieurs)"}})}}
+            <button class="btn btn-success move-btn" type="submit">
+                {% if editMode %}
+                    Enregister
+                {% else %}
+                Ajouter la chambre
+                {% endif %}
+            </button>
+            {{form_end(formchambre)}}
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

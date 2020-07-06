@@ -33,14 +33,14 @@ class Etudiants
     private $prenom;
 
     /**
-     * @ORM\Column(type="date")
-     */
-    private $datenaissance;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $tel;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $datenaissance;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -60,7 +60,7 @@ class Etudiants
     /**
      * @ORM\ManyToOne(targetEntity=Chambres::class, inversedBy="etudiants")
      */
-    private $chambre;
+    private $numChamb;
 
     public function getId(): ?int
     {
@@ -103,18 +103,6 @@ class Etudiants
         return $this;
     }
 
-    public function getDatenaissance(): ?\DateTimeInterface
-    {
-        return $this->datenaissance;
-    }
-
-    public function setDatenaissance(\DateTimeInterface $datenaissance): self
-    {
-        $this->datenaissance = $datenaissance;
-
-        return $this;
-    }
-
     public function getTel(): ?string
     {
         return $this->tel;
@@ -123,6 +111,18 @@ class Etudiants
     public function setTel(string $tel): self
     {
         $this->tel = $tel;
+
+        return $this;
+    }
+
+    public function getDatenaissance(): ?\DateTimeInterface
+    {
+        return $this->datenaissance;
+    }
+
+    public function setDatenaissance(\DateTimeInterface $datenaissance): self
+    {
+        $this->datenaissance = $datenaissance;
 
         return $this;
     }
@@ -163,14 +163,14 @@ class Etudiants
         return $this;
     }
 
-    public function getChambre(): ?Chambres
+    public function getNumChamb(): ?Chambres
     {
-        return $this->chambre;
+        return $this->numChamb;
     }
 
-    public function setChambre(?Chambres $chambre): self
+    public function setNumChamb(?Chambres $numChamb): self
     {
-        $this->chambre = $chambre;
+        $this->numChamb = $numChamb;
 
         return $this;
     }
