@@ -31,7 +31,7 @@ $("#table-rooms").DataTable({
        const sweetDeleteRoom = title => {
            const swalWithBootstrapButtons = Swal.mixin({
                customClass: {
-                   confirmButton: 'btn btn-success move-btn ml-3',
+                   confirmButton: 'btn btn-default move-btn ml-3',
                    cancelButton: 'btn btn-danger'
                },
                buttonsStyling: false

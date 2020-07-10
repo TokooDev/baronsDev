@@ -38,7 +38,14 @@ body{
     background-color: #713BDB;
     border: 2px solid #713BDB;
 }
-
+.move-btn:focus{
+    background-color: #713BDB;
+    border: 2px solid #713BDB;
+}
+.move-btn:visited{
+    background-color: #713BDB;
+    border: 2px solid #713BDB;
+}
 .side-nav{
     position: absolute;
     top: 15%;
