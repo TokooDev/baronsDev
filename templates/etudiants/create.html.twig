@@ -14,13 +14,14 @@
     <div class="row">
         <div class="col-8 offset-2">
             {{form_start(formetudiant)}}
-            {{form_row(formetudiant.nom, {'attr': {'placeholder':"Taper le nom de l'étudiant",'class': 'my-input'}})}}
-            {{form_row(formetudiant.prenom, {'attr': {'placeholder':"Taper le prénom de l'étudiant",'class': 'my-input'}})}}
-            {{form_row(formetudiant.datenaissance, {'attr': {'placeholder':"Taper la date de naissance de l'étudiant",'class': 'my-input'}})}}
-            {{form_row(formetudiant.tel, {'attr': {'placeholder':"Taper le numéro de téléphone de l'étudiant",'class': 'my-input'}})}}
-            {{form_row(formetudiant.email, {'attr': {'placeholder':"Taper l'adresse email de l'étudiant",'class': 'my-input'}})}}
-            {{form_row(formetudiant.type, {'attr': {'placeholder':"Taper le type de l'étudiant",'class': 'my-input'}})}}
-            {{form_row(formetudiant.adresse, {'attr': {'placeholder':"Taper l'adresse de l'étudiant",'class': 'my-input'}})}}
+            {{form_row(formetudiant.nom, {'label':'Nom','attr': {'placeholder':"Taper le nom de l'étudiant",'class': 'my-input'}})}}
+            {{form_row(formetudiant.prenom, {'label':'Prénom','attr': {'placeholder':"Taper le prénom de l'étudiant",'class': 'my-input'}})}}
+            {{form_row(formetudiant.datenaissance, {'label':'Date de naissance','attr': {'placeholder':"Taper la date de naissance de l'étudiant",'class': 'my-input'}})}}
+            {{form_row(formetudiant.tel, {'label':'Téléphone','attr': {'placeholder':"Taper le numéro de téléphone de l'étudiant",'class': 'my-input'}})}}
+            {{form_row(formetudiant.email, {'label':'Adresse e-mail','attr': {'placeholder':"Taper l'adresse email de l'étudiant",'class': 'my-input'}})}}
+            {{form_row(formetudiant.type, {'label':'Type','attr': {'placeholder':"Taper le type de l'étudiant",'class': 'my-input'}})}}
+            <div id="info">
+            </div>
             <button class="btn btn-success move-btn" type="submit">
                 {% if editMode %}
                     Enregister
@@ -28,9 +29,55 @@
                 Ajouter l'étudiant
                 {% endif %}
             </button>
-            {{form_end(formetudiant)}}
+            {{form_end(formetudiant,{
+                "render_rest":false
+            })}}
         </div>
-        
+     
     </div>
 </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function () {
+            const pension = '{{ form_row(formetudiant.pension,{"label":"Pension","attr": {"class": "my-input"}}) }}';
+            const adresse = '{{ form_row(formetudiant.adresse,{"label":"Adresse","attr": {"placeholder":"Taper l\'adresse de l\'étudiant","class": "my-input"}}) }}';
+            const room = '{{ form_row(formetudiant.chambre,{"label":"Chambre","attr": {"class": "my-input"}}) }}';
+            
+            $("#etudiants_type").on("change", function () {
+                
+                const value = this.value;
+                if(value == "BOURSIER LOGE"){
+                    const elt = `
+                    <div class="col-md-6">
+                        ${pension}
+                    </div>
+                    <div class="col-md-6">
+                        ${room}
+                    </div>
+                    `;
+                $("#info").addClass("form-row");
+                $("#info").html(elt);
+                }else if(value == "BOURSIER NON LOGE"){
+                    const elt = `
+                        <div class="col-md-6">
+                            ${pension}
+                        </div>
+                        <div class="col-md-6">
+                            ${adresse}
+                        </div>
+                        `;
+                    $("#info").addClass("form-row");
+                    $("#info").html(elt);
+                }else if(value == "NON BOURSIER"){
+                    const elt = `
+                        <div class="form-group col-12">
+                            ${adresse}
+                        </div>
+                        `;
+                    $("#info").html(elt);
+                }
+            });
+        });
+    </script>
 {% endblock %}

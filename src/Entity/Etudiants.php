@@ -2,11 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\EtudiantsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EtudiantsRepository;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=EtudiantsRepository::class)
+ * @UniqueEntity(
+* fields = {"email"},
+* message = "Cette étudiant(e) a déja été ajouté (e)"
+* )
  */
 class Etudiants
 {
@@ -78,7 +83,7 @@ class Etudiants
     private $type;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
      *      min = 2,
      *      max = 255,
@@ -93,6 +98,11 @@ class Etudiants
      * @ORM\ManyToOne(targetEntity=Chambres::class, inversedBy="etudiants")
      */
     private $chambre;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $pension;
 
     public function getId(): ?int
     {
@@ -188,7 +198,7 @@ class Etudiants
         return $this->adresse;
     }
 
-    public function setAdresse(string $adresse): self
+    public function setAdresse(?string $adresse): self
     {
         $this->adresse = $adresse;
 
@@ -203,6 +213,18 @@ class Etudiants
     public function setChambre(?Chambres $chambre): self
     {
         $this->chambre = $chambre;
+
+        return $this;
+    }
+
+    public function getPension(): ?int
+    {
+        return $this->pension;
+    }
+
+    public function setPension(?int $pension): self
+    {
+        $this->pension = $pension;
 
         return $this;
     }

@@ -14,8 +14,8 @@
     <div class="row">
         <div class="col-8 offset-2">
             {{form_start(formchambre)}}
-            {{form_row(formchambre.numBat, {'attr': {'placeholder':"Taper le numéro du bâtiment",'class': 'my-input'}})}}
-            {{form_row(formchambre.type, {'attr': {'class': 'my-input', 'label':'Type de la chambre'}})}}
+            {{form_row(formchambre.numBat, {'label':'Numéro du bâtiment','attr': {'placeholder':"Taper le numéro du bâtiment",'class': 'my-input'}})}}
+            {{form_row(formchambre.type, {'label':'Type de la chambre','attr': {'class': 'my-input'}})}}
             <button class="btn btn-success move-btn" type="submit">
                 {% if editChambre %}
                     Enregister

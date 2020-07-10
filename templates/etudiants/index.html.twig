@@ -23,11 +23,9 @@
                                     <tr class="text-center">
                                         <th>Matricule</th>
                                         <th>Nom complet</th>
-                                        <th>Date de naissance</th>
                                         <th>Téléphone</th>
                                         <th>Email</th>
                                         <th>Type</th>
-                                        <th>Adresse</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -36,11 +34,9 @@
                                     <tr class="text-center">
                                         <td>{{etudiant.matricule}}</td>
                                         <td>{{etudiant.prenom}} {{etudiant.nom}}</td>
-                                        <td>{{etudiant.datenaissance |date('d-m-y')}}</td>
                                         <td>{{etudiant.tel}}</td>
                                         <td>{{etudiant.email}}</td>
                                         <td>{{etudiant.type}}</td>
-                                        <td>{{etudiant.adresse}}</td>
                                         <td>
                                             <a href="{{path('etudiants_edit', {id: etudiant.id})}}" title="Modifier étudiant" class="text-warging edit-student-Btn"><i class="fa fa-edit fa-lg"></i></a>
                                         </td>

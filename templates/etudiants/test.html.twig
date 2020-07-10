@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% form_theme formetudiant 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+<div class="col-lg-10 ml-lg-auto p-2 col-md-12 col-sm-12 content-to-load-section">
+    <h3 class="logo text-center">
+    {% if editMode %}
+        <i class="fas fa-plus-square"></i> MODIFICATION DES INFORMATIONS D'UN ETUDIANT
+    {% else %}
+        <i class="fas fa-plus-square"></i> AJOUT D'UN ETUDIANT
+    {% endif %}
+    
+    </h3>
+    <hr>
+    <div class="row">
+        <div class="col-8 offset-2">
+            {{form_start(formetudiant)}}
+            {{form_row(formetudiant.nom, {'label':'Nom','attr': {'placeholder':"Taper le nom de l'étudiant",'class': 'my-input'}})}}
+            {{form_row(formetudiant.prenom, {'label':'Prénom','attr': {'placeholder':"Taper le prénom de l'étudiant",'class': 'my-input'}})}}
+            {{form_row(formetudiant.datenaissance, {'label':'Date de naissance','attr': {'placeholder':"Taper la date de naissance de l'étudiant",'class': 'my-input'}})}}
+            {{form_row(formetudiant.tel, {'attr': {'label':'Téléphone','placeholder':"Taper le numéro de téléphone de l'étudiant",'class': 'my-input'}})}}
+            {{form_row(formetudiant.email, {'label':'Adresse e-mail','attr': {'placeholder':"Taper l'adresse email de l'étudiant",'class': 'my-input'}})}}
+            {{form_row(formetudiant.type, {'label':'Type','attr': {'placeholder':"Taper le type de l'étudiant",'class': 'my-input'}})}}
+            {{ form_row(formetudiant.pension,{"label":"Pension","attr": {"class": "my-input"}}) }}
+            {{ form_row(formetudiant.adresse,{"label":"Adresse","attr": {"placeholder":"Taper l\'adresse de l\'étudiant","class": "my-input"}}) }}
+            {{ form_row(formetudiant.chambre,{"label":"Chambre","attr": {"class": "my-input"}}) }}
+            <button class="btn btn-success move-btn" type="submit">
+                {% if editMode %}
+                    Enregister
+                {% else %}
+                Ajouter l'étudiant
+                {% endif %}
+            </button>
+            {{form_end(formetudiant)}}
+        </div>
+    </div>
+</div>
+{% endblock %}

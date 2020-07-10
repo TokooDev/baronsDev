@@ -2,15 +2,18 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Chambres;
-use Symfony\Component\HttpFoundation\Request;
-use Doctrine\ORM\EntityManagerInterface;
-use App\Repository\ChambresRepository;
 use App\Form\ChambresType;
-use MercurySeries\FlashyBundle\FlashyNotifier;
+use App\Repository\ChambresRepository;
+use App\Repository\EtudiantsRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use function Symfony\Component\String\u;
+use Symfony\Component\HttpFoundation\Request;
+use MercurySeries\FlashyBundle\FlashyNotifier;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 class ChambresController extends AbstractController
 {
     /**
@@ -57,6 +60,22 @@ class ChambresController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/chambres/{id<\d+>}/isRoomVide", name="is_room_vide", methods={"POST"})
+     */
+    public function isRoomVide(EtudiantsRepository $etudiantRepo,Chambres $chambre){
+
+        $etudiant= $etudiantRepo->findOneBy([
+            "chambre" =>$chambre
+        ]);
+        $statut = ['message'=>""];
+        if($etudiant){
+            $statut['message'] ="occupe";
+        }else{
+            $statut['message'] ="libre";
+        }
+        return new JsonResponse(json_encode($statut));
+    }
     /**
      *@Route("/chambres/{id}/delete/", name="chambres_delete")
      */
